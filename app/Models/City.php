@@ -11,8 +11,8 @@ class City extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'musementapi_id',
+        'name',
         'latitude',
         'longitude'
     ];

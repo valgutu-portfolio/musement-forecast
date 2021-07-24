@@ -11,4 +11,9 @@ class CityRepository extends BaseRepository implements ICityRepository
     {
         $this->setModel($city);
     }
+
+    public function getByMusementId(int $id): ?City
+    {
+        return $this->model->where('musementapi_id', $id)->first();
+    }
 }
