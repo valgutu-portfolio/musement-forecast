@@ -2,19 +2,25 @@
 
 namespace App\Services;
 
-use App\Repositories\CityRepository;
+use App\Repositories\Interfaces\ICityRepository;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 
 class CityService
 {
     protected MusementApiService $musementService;
-    protected CityRepository $cityRepository;
+    protected ICityRepository $cityRepository;
 
-    public function __construct(MusementApiService $musementService, CityRepository $cityRepository)
+    public function __construct(MusementApiService $musementService, ICityRepository $cityRepository)
     {
         $this->musementService = $musementService;
         $this->cityRepository = $cityRepository;
+    }
+
+    public function allWithForecast(): Collection
+    {
+        return $this->cityRepository->allWithForecast();
     }
 
     public function updateAll(): bool

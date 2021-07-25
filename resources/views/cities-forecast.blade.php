@@ -18,9 +18,33 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .content {
+                width: 768px;
+                margin: 0 auto;
+                padding: 10px 50px;
+                box-shadow: 1px 1px 3px 3px rgba(0,0,0,.1);
+            }
+            .forecast-row {
+                border-bottom: 1px solid #eee;
+                line-height: 50px;
+                margin: 0;
+            }
+            .forecast-row .text {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .forecast-row img {
+                width: 24px;
+                margin: 0 5px;
+            }
         </style>
     </head>
     <body class="antialiased">
-
+        <div class="content">
+            @foreach($forecast as $text)
+                <div class="forecast-row">{!! $text !!}</div>
+            @endforeach
+        </div>
     </body>
 </html>

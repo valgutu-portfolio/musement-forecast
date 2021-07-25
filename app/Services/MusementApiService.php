@@ -13,7 +13,7 @@ class MusementApiService
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => config('musement.api_url'),
+            'base_uri' => env('MUSEMENT_API_URL'),
         ]);
     }
 
@@ -25,7 +25,7 @@ class MusementApiService
             $body = $response->getBody()->getContents();
             return json_decode($body);
         } catch (GuzzleException $e) {
-            Log::error('Musement API. Request error: ' . $e->getMessage());
+            Log::error('Musement. Request error: ' . $e->getMessage());
             return null;
         }
     }

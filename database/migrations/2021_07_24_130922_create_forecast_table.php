@@ -19,6 +19,8 @@ class CreateForecastTable extends Migration
             $table->date('date');
             $table->json('condition');
             $table->timestamps();
+
+            $table->unique(['city_id', 'date']);
         });
     }
 

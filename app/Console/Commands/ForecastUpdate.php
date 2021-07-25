@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\CityService;
+use App\Services\ForecastService;
 use Illuminate\Console\Command;
 
 class ForecastUpdate extends Command
@@ -27,12 +28,14 @@ class ForecastUpdate extends Command
      * @return void
      */
     protected CityService $cityService;
+    protected ForecastService $forecastService;
 
-    public function __construct(CityService $cityService)
+    public function __construct(CityService $cityService, ForecastService $forecastService)
     {
         parent::__construct();
 
         $this->cityService = $cityService;
+        $this->forecastService = $forecastService;
     }
 
     /**
@@ -42,7 +45,7 @@ class ForecastUpdate extends Command
      */
     public function handle()
     {
-        $updated = $this->cityService->updateAll();
-        return $updated;
+        $this->cityService->updateAll();
+        $this->forecastService->updateExpiredForecast();
     }
 }

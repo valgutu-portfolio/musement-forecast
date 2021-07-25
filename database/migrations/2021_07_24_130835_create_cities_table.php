@@ -19,6 +19,7 @@ class CreateCitiesTable extends Migration
             $table->integer('musementapi_id')->nullable()->unique();
             $table->double('latitude');
             $table->double('longitude');
+            $table->date('forecast_update_date')->nullable();
             $table->timestamps();
         });
     }
