@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ClearExpiredForecasts;
 use App\Console\Commands\ForecastUpdate;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        ForecastUpdate::class
+        ForecastUpdate::class,
+        ClearExpiredForecasts::class
     ];
 
     /**
@@ -26,6 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('forecast:update')->dailyAt('00:01');
+        $schedule->command('forecast:clear-expired')->daily('00:01');
     }
 
     /**

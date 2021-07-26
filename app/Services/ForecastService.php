@@ -65,4 +65,9 @@ class ForecastService
 
         return $this->forecastRepository->create($fillable);
     }
+
+    public function deleteExpired(): bool
+    {
+        return $this->forecastRepository->deleteExpired();
+    }
 }

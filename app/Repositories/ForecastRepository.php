@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Forecast;
 use App\Repositories\Interfaces\IForecastRepository;
+use Carbon\Carbon;
 
 class ForecastRepository extends BaseRepository implements IForecastRepository
 {
@@ -31,5 +32,10 @@ class ForecastRepository extends BaseRepository implements IForecastRepository
         }
 
         return $forecastSaved;
+    }
+
+    public function deleteExpired(): bool
+    {
+        return $this->model->whereDate('date', '<', Carbon::today())->delete();
     }
 }
