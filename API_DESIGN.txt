@@ -1,0 +1,97 @@
+GET /api/v3/cities/{id}/forecast
+
+Description: Get forecast for all available dates
+
+Parameters:
+id - in path parameter, city ID
+date - in path string parameter, date format
+
+Response:
+200 - Success
+Body: {
+    forecast: [
+        {
+            date: "",
+            condition: {
+                text: "",
+                icon: ""
+            }
+        },
+        {..}, {..}
+    ]
+}
+
+Errors:
+404 - Not Found (city not found or no forecast for a date)
+500 - Internal server error
+
+_____________________________________________________________
+
+
+GET /api/v3/cities/{id}/forecast/{date}
+Description: Get forecast for a specific date
+
+Parameters:
+id - in path parameter, city ID
+date - in path string parameter, date format
+
+Response:
+200 - Success
+Body: {
+    date: "",
+    condition: {
+        text: "",
+        icon: ""
+    }
+}
+
+Errors:
+404 - Not Found (city not found or no forecast for a date)
+500 - Internal server error
+
+_____________________________________________________________
+
+PUT /api/v3/cities/{id}/forecast
+Description: Set forecast for multiple dates for a specific city
+
+Parameters:
+id - in path parameter, city ID
+
+Request Body:
+{
+    "forecasts": [
+        {
+            date: "",
+            condition: {
+                text: "",
+                icon: ""
+            }
+        },
+        {..}, {..}
+    ]
+}
+
+Success:
+200 - Success
+Body: {
+    success: true,
+    data: {
+        forecast: [
+            {
+                date: "",
+                condition: {
+                    text: "",
+                    icon: ""
+                }
+            },
+            {..}, {..}
+        ]
+    }
+}
+
+Errors:
+401 - No Authentication
+403 - No Authorization
+404 - Not Found (by city id)
+422 - Unprocessable Entity (Validation Error)
+500 - Internal server error
